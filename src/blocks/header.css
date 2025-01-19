@@ -1,0 +1,15 @@
+.header {
+  padding-top: 45px;
+}
+.header__logo {
+  max-width: 173px;
+  margin: 0px;
+  padding-bottom: 41px;
+  width: 100%;
+}
+.header__line {
+  margin: 0px;
+  width: 100%;
+  height: 1px;
+  background: rgba(84, 84, 84, 1);
+}

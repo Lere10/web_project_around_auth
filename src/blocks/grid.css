@@ -1,0 +1,137 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 17px;
+  padding: 0px;
+}
+.grid__box {
+  position: relative;
+  max-width: 282px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.grid__display {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+}
+.grid__display_opened {
+  display: flex;
+}
+.grid__display-container {
+  position: relative;
+  z-index: 2;
+  max-width: 75vw;
+
+  margin: auto;
+}
+.grid__display-image {
+  max-height: 75vh;
+  width: 100%;
+}
+.grid__display-closer {
+  position: absolute;
+  top: -35px;
+  right: -40px;
+}
+.grid__display-closer:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.grid__display-title {
+  margin: 0px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  bottom: -22px;
+  left: 0px;
+}
+.grid__box-portrait {
+  max-height: 282px;
+  overflow: hidden;
+}
+.grid__box-portrait-photo {
+  width: 100%;
+  height: 282px;
+  object-fit: cover;
+}
+.grid__content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 25px 0px 22px 0px;
+  max-width: 246px;
+}
+.grid__content-title {
+  margin: 0px;
+  font-size: 24px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.grid__content-like {
+  margin: 0px;
+  max-width: 21px;
+  width: 100%;
+}
+.grid__content-like_active {
+  background-image: url(../images/liked_icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.grid__content-like:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.grid__content-likeNumber {
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 400;
+}
+.grid__delete-button {
+  display: none;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  max-width: 18px;
+}
+.grid__delete-button_show {
+  display: block;
+}
+.grid__delete-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1040px) {
+  .grid {
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    max-width: 581px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    max-width: 282px;
+  }
+  .grid__display-closer {
+    max-width: 20px;
+    top: -15px;
+    right: -25px;
+  }
+}

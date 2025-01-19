@@ -1,0 +1,16 @@
+.footer {
+  margin: 0px;
+  padding: 67px 0px 60px 0px;
+}
+.footer__copyright {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #545454;
+}
+
+@media screen and (max-width: 690px) {
+  .footer {
+    padding: 50px 0px 36px 0px;
+  }
+}
