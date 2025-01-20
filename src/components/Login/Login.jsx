@@ -66,11 +66,12 @@ export default function Login() {
             style={{
               margin: "0px",
               backgroundColor: "#000",
+              color: "#fff",
               borderBottom: "1px solid #fff",
               maxWidth: "358px",
             }}
             // ref={imagePlaceRef}
-            type="text"
+            type="password"
             id="password"
             className="form__input form__input-bio"
             name="password"
