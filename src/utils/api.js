@@ -3,6 +3,7 @@ class Api {
     this._baseUrl = baseURL;
     this._options = options;
   }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, this._options)
       .then((res) => {
