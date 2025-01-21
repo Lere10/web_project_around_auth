@@ -1,11 +1,31 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../Header/Header.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../blocks/form.css";
 import "../../blocks/popup.css";
 
-export default function Register() {
+export default function Register({ handleRegistration }) {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRegistration(data);
+    console.log(data);
+  };
+
   return (
     <div
       className="page__content"
@@ -40,7 +60,7 @@ export default function Register() {
       >
         Inscrever-se
       </h2>
-      <form className="form popup__form" /*onSubmit={handleSubmit}*/>
+      <form className="form popup__form" onSubmit={handleSubmit}>
         <fieldset className="form__fieldset">
           <input
             style={{

@@ -1,11 +1,18 @@
 import React from "react";
 import Header from "../Header/Header.jsx";
-import { NavLink, useNavigate } from "react-router-dom";
+import { data, NavLink, useNavigate } from "react-router-dom";
 import "../../blocks/form.css";
 import "../../blocks/popup.css";
 
-export default function Login() {
-  const navigate = useNavigate();
+export default function Login({ handleLogin }) {
+  //  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.prventeDefault();
+    handleLogin(data);
+    console.log(data);
+  };
+
   return (
     <div
       className="page__content"
@@ -40,7 +47,7 @@ export default function Login() {
       >
         Entrar
       </h2>
-      <form className="form popup__form" /*onSubmit={handleSubmit}*/>
+      <form className="form popup__form" onSubmit={handleSubmit}>
         <fieldset className="form__fieldset">
           <input
             style={{

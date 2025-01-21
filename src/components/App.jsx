@@ -14,6 +14,8 @@ import Login from "./Login/Login.jsx";
 import Register from "./Register/Register.jsx";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.jsx";
 
+import * as auth from "../utils/auth.js";
+import * as token from "../utils/token.js";
 import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
@@ -32,6 +34,48 @@ function App() {
       setCurrentUser(res);
     });
   }, []);
+
+  useEffect(() => {
+    const jwt = token.getToken();
+
+    if (!jwt) {
+      return;
+    }
+    api
+      .getUserInfo(jwt)
+      .then(({ username, email }) => {
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+      })
+      .catch(console.error);
+  }, []);
+
+  const handleLogin = ({ username, password }) => {
+    if (!username || !password) {
+      return;
+    }
+    auth
+      .authorize(username, password)
+      .then((data) => {
+        if (data.jwt) {
+          token.setToken(data.jwt);
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
+          const redirectPath = location.state?.from || "/";
+          navigate(redirectPath);
+        }
+      })
+      .catch(console.error);
+  };
+
+  const handleRegistration = ({ email, password }) => {
+    auth
+      .register(email, password)
+      .then(() => {
+        navigate("/signin", { replace: true });
+      })
+      .catch(console.error);
+  };
 
   const handleUpdateAvatar = async (data) => {
     await api.setNewAvatar(data);
@@ -140,7 +184,7 @@ function App() {
         path="/signin"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
-            <Login />
+            <Login handleLogin={handleLogin} />
           </ProtectedRoute>
         }
       />
@@ -148,7 +192,7 @@ function App() {
         path="/signup"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
-            <Register />
+            <Register handleRegistration={handleRegistration} />
           </ProtectedRoute>
         }
       />
