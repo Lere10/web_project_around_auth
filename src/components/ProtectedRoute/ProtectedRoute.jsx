@@ -12,7 +12,7 @@ export default function ProtectedRoute({
     return <Navigate to={from} />;
   }
   if (!anonymous && !isLoggedIn) {
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/signin" state={{ from: location }} />;
   }
   return children;
 }
