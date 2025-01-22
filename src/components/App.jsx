@@ -75,7 +75,7 @@ function App() {
         console.log("oi");
         navigate("/signin", { replace: true });
       })
-      .catch(console.error("aqui:"));
+      .catch(console.error);
   };
 
   const handleUpdateAvatar = async (data) => {
