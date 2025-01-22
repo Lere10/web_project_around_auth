@@ -10,7 +10,7 @@ export default function Register({ handleRegistration }) {
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,8 +22,8 @@ export default function Register({ handleRegistration }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(data);
     console.log(data);
+    handleRegistration(data);
   };
 
   return (
@@ -79,6 +79,7 @@ export default function Register({ handleRegistration }) {
             name="email"
             minLength="2"
             maxLength="30"
+            onChange={handleChange}
             required
           />
           <span className="form__input-error-message form__title-error"></span>
@@ -96,6 +97,7 @@ export default function Register({ handleRegistration }) {
             className="form__input form__input-bio"
             name="password"
             placeholder="Senha"
+            onChange={handleChange}
             required
           />
           <span className="form__input-error-message form__imageURL-error"></span>

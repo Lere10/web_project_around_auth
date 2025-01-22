@@ -72,9 +72,10 @@ function App() {
     auth
       .register(email, password)
       .then(() => {
+        console.log("oi");
         navigate("/signin", { replace: true });
       })
-      .catch(console.error);
+      .catch(console.error("aqui:"));
   };
 
   const handleUpdateAvatar = async (data) => {

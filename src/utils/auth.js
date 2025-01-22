@@ -1,17 +1,21 @@
-//export const BASE_URL = "https://api.nomoreparties.co";
 export const BASE_URL = "https://register.nomoreparties.co";
 
-export const register = (username, password, email) => {
-  return fetch(`${BASE_URL}/auth/local/register`, {
+export const register = (email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      // Authorization: `Bearer ${token.setToken()}`,
     },
-    body: JSON.stringify({ username, password, email }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const authorize = (identifier, password) => {
@@ -20,6 +24,7 @@ export const authorize = (identifier, password) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      // Authorization: `Bearer ${token.getToken()}`,
     },
     body: JSON.stringify({ identifier, password }),
   }).then((res) => {

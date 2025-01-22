@@ -27,6 +27,20 @@ class Api {
       }
     });
   }
+
+  getUserInfo(token) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
   setNewUser(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
