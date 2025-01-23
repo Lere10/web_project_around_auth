@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../Header/Header.jsx";
 import { data, NavLink, useNavigate } from "react-router-dom";
 import "../../blocks/form.css";
@@ -6,11 +7,22 @@ import "../../blocks/popup.css";
 
 export default function Login({ handleLogin }) {
   //  const navigate = useNavigate();
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
-    e.prventeDefault();
+    e.preventDefault();
     handleLogin(data);
-    console.log(data);
   };
 
   return (
@@ -59,6 +71,7 @@ export default function Login({ handleLogin }) {
               width: "100%",
             }}
             //ref={namePlaceRef}
+            onChange={handleChange}
             type="email"
             id="email"
             className="form__input form__input-name"
@@ -78,6 +91,7 @@ export default function Login({ handleLogin }) {
               maxWidth: "358px",
             }}
             // ref={imagePlaceRef}
+            onChange={handleChange}
             type="password"
             id="password"
             className="form__input form__input-bio"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useDebugValue, useEffect, useState } from "react";
 import {
   Routes,
   Route,
@@ -22,7 +22,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [userData, setUserData] = useState({ username: "", email: "" });
+  const [userData, setUserData] = useState({ email: "", password: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
@@ -45,27 +45,32 @@ function App() {
       .getUserInfo(jwt)
       .then(({ username, email }) => {
         setIsLoggedIn(true);
+        console.log(username, email);
         setUserData({ username, email });
       })
       .catch(console.error);
   }, []);
 
-  const handleLogin = ({ username, password }) => {
-    if (!username || !password) {
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
       return;
     }
     auth
-      .authorize(username, password)
+      .authorize(email, password)
       .then((data) => {
-        if (data.jwt) {
-          token.setToken(data.jwt);
-          setCurrentUser(data.user);
+        console.log(email, password);
+        if (data.token) {
+          token.setToken(data.token);
+          setUserData({ email, password });
           setIsLoggedIn(true);
           const redirectPath = location.state?.from || "/";
           navigate(redirectPath);
+          console.log(redirectPath);
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.log("erro de login: ", err);
+      });
   };
 
   const handleRegistration = ({ email, password }) => {
