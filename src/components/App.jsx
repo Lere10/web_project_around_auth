@@ -45,7 +45,6 @@ function App() {
       .getUserInfo(jwt)
       .then(({ username, email }) => {
         setIsLoggedIn(true);
-        console.log(username, email);
         setUserData({ username, email });
       })
       .catch(console.error);
@@ -65,7 +64,6 @@ function App() {
           setIsLoggedIn(true);
           const redirectPath = location.state?.from || "/";
           navigate(redirectPath);
-          console.log(redirectPath);
         }
       })
       .catch((err) => {

@@ -28,15 +28,18 @@ class Api {
     });
   }
 
-  getUserInfo(token) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
+  getUserInfo(jwt) {
+    return fetch(
+      `https://se-register-api.en.tripleten-services.com/v1/users/me`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    ).then((res) => {
       return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
     });
   }
