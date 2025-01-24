@@ -80,7 +80,7 @@ function App() {
       .then(() => {
         setInfoState(true);
         setPopup({
-          title: "basasaijsia",
+          title: "",
           children: <InfoTooltip state={true} />,
         });
         navigate("/signin", { replace: true });
@@ -88,7 +88,7 @@ function App() {
       .catch((err) => {
         setInfoState(false);
         setPopup({
-          title: "dsafsadsadsa",
+          title: "",
           children: <InfoTooltip state={false} />,
         });
         console.log("erro de registro: ", err);
