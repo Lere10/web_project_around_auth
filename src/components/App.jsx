@@ -13,6 +13,8 @@ import Footer from "./Footer/Footer.jsx";
 import Login from "./Login/Login.jsx";
 import Register from "./Register/Register.jsx";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute.jsx";
+import InfoTooltip from "./Main/components/Popup/components/InfoTooltip/InfoTooltip.jsx";
+import Popup from "./Main/components/Popup/Popup.jsx";
 
 import * as auth from "../utils/auth.js";
 import * as token from "../utils/token.js";
@@ -27,6 +29,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [popup, setPopup] = useState(null);
+  const [infoState, setInfoState] = useState(null);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -75,10 +78,21 @@ function App() {
     auth
       .register(email, password)
       .then(() => {
-        console.log("oi");
+        setInfoState(true);
+        setPopup({
+          title: "basasaijsia",
+          children: <InfoTooltip state={true} />,
+        });
         navigate("/signin", { replace: true });
       })
-      .catch(console.error);
+      .catch((err) => {
+        setInfoState(false);
+        setPopup({
+          title: "dsafsadsadsa",
+          children: <InfoTooltip state={false} />,
+        });
+        console.log("erro de registro: ", err);
+      });
   };
 
   const handleUpdateAvatar = async (data) => {
@@ -155,53 +169,69 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <CurrentUserContext.Provider
-              value={{
-                currentUser,
-                handleUpdateUser,
-                handleUpdateAvatar,
-                handleAddPlace,
-              }}
-            >
-              <div className="page__content">
-                <Header />
-                <Main
-                  popup={popup}
-                  cards={cards}
-                  handleCardLike={handleCardLike}
-                  handleCardDelete={handleCardDelete}
+    <>
+      <CurrentUserContext.Provider
+        value={{
+          currentUser,
+          handleUpdateUser,
+          handleUpdateAvatar,
+          handleAddPlace,
+        }}
+      >
+        {popup && (
+          <Popup title={popup.title} onClose={handleClosePopup}>
+            {popup.children}
+          </Popup>
+        )}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <div className="page__content">
+                  <Header />
+                  <Main
+                    popup={popup}
+                    cards={cards}
+                    handleCardLike={handleCardLike}
+                    handleCardDelete={handleCardDelete}
+                    handleOpenPopup={handleOpenPopup}
+                    handleClosePopup={handleClosePopup}
+                  />
+                  <Footer />
+                </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+                <Login
+                  handleLogin={handleLogin}
                   handleOpenPopup={handleOpenPopup}
                   handleClosePopup={handleClosePopup}
                 />
-                <Footer />
-              </div>
-            </CurrentUserContext.Provider>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/signin"
-        element={
-          <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
-            <Login handleLogin={handleLogin} />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/signup"
-        element={
-          <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
-            <Register handleRegistration={handleRegistration} />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
-
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn} anonymous>
+                <Register
+                  popup={popup}
+                  handleRegistration={handleRegistration}
+                  infoState={infoState}
+                  handleOpenPopup={handleOpenPopup}
+                  handleClosePopup={handleClosePopup}
+                />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </CurrentUserContext.Provider>
+    </>
     //------------------------------
   );
 }

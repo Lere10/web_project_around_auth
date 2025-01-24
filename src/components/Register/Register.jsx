@@ -1,11 +1,19 @@
-import React from "react";
+import React, { Children } from "react";
 import { useState } from "react";
 import Header from "../Header/Header.jsx";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../../blocks/form.css";
 import "../../blocks/popup.css";
+// import Popup from "../Main/components/Popup/Popup.jsx";
+// import InfoTooltip from "../Main/components/Popup/components/InfoTooltip/InfoTooltip.jsx";
 
-export default function Register({ handleRegistration }) {
+export default function Register({
+  infoState,
+  handleRegistration,
+  popup,
+  handleClosePopup,
+  handleOpenPopup,
+}) {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -22,7 +30,6 @@ export default function Register({ handleRegistration }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
     handleRegistration(data);
   };
 
@@ -131,6 +138,12 @@ export default function Register({ handleRegistration }) {
       >
         Já é um membro? Faça o login aqui
       </NavLink>
+
+      {/* {popup && (
+        <Popup onClose={handleClosePopup} title={popup.title}>
+          {popup.children}
+        </Popup>
+      )} */}
     </div>
   );
 }

@@ -13,15 +13,7 @@ import { useContext } from "react";
 
 import Card from "./components/Card/Card.jsx";
 
-const NewCardPopup = { title: "Novo lugar", children: <NewCard /> };
-const EditProfilePopup = {
-  title: "Editar perfil",
-  children: <EditProfile />,
-};
-const EditAvatarPopup = {
-  title: "Alterar foto de perfil",
-  children: <EditAvatar />,
-};
+//ele estava aqui
 
 export default function Main({
   cards,
@@ -32,6 +24,19 @@ export default function Main({
   handleClosePopup,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+
+  // ---------------------
+  const NewCardPopup = { title: "Novo lugar", children: <NewCard /> };
+  const EditProfilePopup = {
+    title: "Editar perfil",
+    children: <EditProfile />,
+  };
+  const EditAvatarPopup = {
+    title: "Alterar foto de perfil",
+    children: <EditAvatar />,
+  };
+  //ultima coisa que fiz foi alterar esse trecho para dentro da function Main
+
   return (
     <main>
       <section className="profile">
