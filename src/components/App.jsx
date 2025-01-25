@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Navigate,
+  NavLink,
   useNavigate,
   useLocation,
 } from "react-router-dom";
@@ -62,7 +63,7 @@ function App() {
       .then((data) => {
         console.log(email, password);
         if (data.token) {
-          token.setToken(data.token);
+          token.setToken(data.token, email);
           setUserData({ email, password });
           setIsLoggedIn(true);
           const redirectPath = location.state?.from || "/";
@@ -72,6 +73,12 @@ function App() {
       .catch((err) => {
         console.log("erro de login: ", err);
       });
+  };
+
+  const handleLogout = () => {
+    token.removeToken();
+    setIsLoggedIn(false);
+    // navigate("/signin");
   };
 
   const handleRegistration = ({ email, password }) => {
@@ -188,7 +195,41 @@ function App() {
             path="/"
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <div className="page__content">
+                <div
+                  className="page__content"
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <p
+                    style={{
+                      margin: "0px",
+                      padding: "0px",
+                      color: "#fff",
+                      position: "absolute",
+                      zIndex: "1",
+                      top: "55px",
+                      right: "89px",
+                    }}
+                  >
+                    {token.getEmail()}
+                  </p>
+                  <NavLink
+                    to="/signin"
+                    onClick={handleLogout}
+                    style={{
+                      textDecoration: "none",
+                      color: "#A9A9A9",
+                      position: "absolute",
+                      zIndex: "1",
+                      top: "55px",
+                      right: "0px",
+                    }}
+                  >
+                    Sair
+                  </NavLink>
                   <Header />
                   <Main
                     popup={popup}
