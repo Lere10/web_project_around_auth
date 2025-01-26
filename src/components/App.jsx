@@ -2,6 +2,7 @@ import { useDebugValue, useEffect, useState } from "react";
 import {
   Routes,
   Route,
+  Navigate,
   NavLink,
   useNavigate,
   useLocation,
@@ -86,7 +87,6 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
-        console.log("res: ", res);
         setInfoState(true);
         setPopup({
           title: "",
@@ -194,6 +194,16 @@ function App() {
         )}
         <Routes>
           <Route
+            path="*"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Navigate to="/signin" replace />
+              )
+            }
+          />
+          <Route
             path="/"
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
@@ -275,7 +285,6 @@ function App() {
         </Routes>
       </CurrentUserContext.Provider>
     </>
-    //------------------------------
   );
 }
 

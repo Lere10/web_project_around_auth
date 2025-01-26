@@ -14,7 +14,7 @@ class Api {
         }
       })
       .catch((error) => {
-        console.log(`Vix paizao, deu ruim ó: ${error}`);
+        console.log(`Erro em cards iniciais: ${error}`);
       });
   }
 
