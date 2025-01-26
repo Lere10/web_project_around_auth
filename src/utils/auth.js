@@ -7,16 +7,15 @@ export const register = (email, password) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token.setToken()}`,
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return res.json().then((error) => Promise.reject(error)); // Propaga o erro como rejeição
+    }
+  });
 };
 
 export const authorize = (email, password) => {
@@ -25,7 +24,6 @@ export const authorize = (email, password) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token.getToken()}`,
     },
     body: JSON.stringify({ email, password }),
   }).then((res) => {

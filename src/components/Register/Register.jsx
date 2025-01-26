@@ -7,13 +7,7 @@ import "../../blocks/popup.css";
 // import Popup from "../Main/components/Popup/Popup.jsx";
 // import InfoTooltip from "../Main/components/Popup/components/InfoTooltip/InfoTooltip.jsx";
 
-export default function Register({
-  infoState,
-  handleRegistration,
-  popup,
-  handleClosePopup,
-  handleOpenPopup,
-}) {
+export default function Register({ handleRegistration }) {
   const [data, setData] = useState({
     email: "",
     password: "",

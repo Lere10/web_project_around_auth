@@ -2,7 +2,6 @@ import { useDebugValue, useEffect, useState } from "react";
 import {
   Routes,
   Route,
-  Navigate,
   NavLink,
   useNavigate,
   useLocation,
@@ -61,7 +60,6 @@ function App() {
     auth
       .authorize(email, password)
       .then((data) => {
-        console.log(email, password);
         if (data.token) {
           token.setToken(data.token, email);
           setUserData({ email, password });
@@ -71,6 +69,10 @@ function App() {
         }
       })
       .catch((err) => {
+        setPopup({
+          title: "",
+          children: <InfoTooltip state={false} />,
+        });
         console.log("erro de login: ", err);
       });
   };
@@ -78,13 +80,13 @@ function App() {
   const handleLogout = () => {
     token.removeToken();
     setIsLoggedIn(false);
-    // navigate("/signin");
   };
 
   const handleRegistration = ({ email, password }) => {
     auth
       .register(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log("res: ", res);
         setInfoState(true);
         setPopup({
           title: "",
@@ -93,12 +95,12 @@ function App() {
         navigate("/signin", { replace: true });
       })
       .catch((err) => {
+        console.log("erro de registro: ", err);
         setInfoState(false);
         setPopup({
           title: "",
           children: <InfoTooltip state={false} />,
         });
-        console.log("erro de registro: ", err);
       });
   };
 

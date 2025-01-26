@@ -31,7 +31,7 @@ export default function InfoTooltip({ state }) {
             }}
           />
           <h2 className="popup__title" style={{ paddingTop: "0px" }}>
-            Ops, algo saiu deu errado! Por favor, tente novamente.
+            Ops, algo deu errado! Por favor, tente novamente.
           </h2>
         </>
       )}
