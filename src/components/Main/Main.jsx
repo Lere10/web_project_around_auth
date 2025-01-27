@@ -1,7 +1,7 @@
-import React from "react";
 import pencil from "../../images/editPencil.svg";
 import editButton from "../../images/button__edit.svg";
 import addButton from "../../images/button__add-post.svg";
+import PropTypes from "prop-types";
 
 import Popup from "./components/Popup/Popup.jsx";
 import NewCard from "./components/Popup/components/NewCard/NewCard.jsx";
@@ -110,3 +110,27 @@ export default function Main({
     </main>
   );
 }
+
+Main.propTypes = {
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      owner: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+      }).isRequired,
+      likes: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+        })
+      ),
+    }).isRequired
+  ).isRequired,
+  handleCardLike: PropTypes.func.isRequired,
+  handleCardDelete: PropTypes.func.isRequired,
+  popup: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+  }),
+  handleOpenPopup: PropTypes.func.isRequired,
+  handleClosePopup: PropTypes.func.isRequired,
+};

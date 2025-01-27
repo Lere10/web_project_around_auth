@@ -1,11 +1,11 @@
-import React from "react";
 import "../../../../blocks/popup.css";
 import closeIcon from "../../../../images/popup__closeicon.png";
+import PropTypes from "prop-types";
 
 export default function Popup(props) {
   const { onClose, title, children } = props;
   const classNamePopup =
-    children.type.name === "InfoTooltip"
+    children && children.type && children.type.name === "InfoTooltip"
       ? "popup__container-infotooltip"
       : "popup__container";
   return (
@@ -30,3 +30,9 @@ export default function Popup(props) {
     </>
   );
 }
+
+Popup.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};

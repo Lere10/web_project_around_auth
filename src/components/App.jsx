@@ -1,4 +1,4 @@
-import { useDebugValue, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Routes,
   Route,
@@ -25,6 +25,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -86,7 +87,7 @@ function App() {
   const handleRegistration = ({ email, password }) => {
     auth
       .register(email, password)
-      .then((res) => {
+      .then(() => {
         setInfoState(true);
         setPopup({
           title: "",

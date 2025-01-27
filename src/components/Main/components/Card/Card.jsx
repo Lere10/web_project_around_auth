@@ -1,9 +1,10 @@
-import React, { Children, useState } from "react";
+import { useState } from "react";
 import "../../../../blocks/grid.css";
 import trashIcon from "../../../../images/Trash_icon.svg";
 import like from "../../../../images/grid__box-like.svg";
 import Popup from "../Popup/Popup.jsx";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
+import PropTypes from "prop-types";
 
 export default function Card(props) {
   const { name, link } = props.card;
@@ -71,3 +72,19 @@ export default function Card(props) {
     </li>
   );
 }
+
+Card.propTypes = {
+  card: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+    likes: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  isOwn: PropTypes.bool.isRequired,
+  onCardDelete: PropTypes.func.isRequired,
+  handleCardLike: PropTypes.func.isRequired,
+};

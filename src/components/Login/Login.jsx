@@ -1,5 +1,5 @@
-import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import Header from "../Header/Header.jsx";
 import { NavLink } from "react-router-dom";
 import "../../blocks/form.css";
@@ -66,3 +66,6 @@ export default function Login({ handleLogin }) {
     </div>
   );
 }
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+};

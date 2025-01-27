@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext, useRef } from "react";
 import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext.js";
 import "../../../../../../blocks/form.css";

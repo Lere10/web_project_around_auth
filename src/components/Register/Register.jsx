@@ -1,9 +1,9 @@
-import React, { Children } from "react";
 import { useState } from "react";
 import Header from "../Header/Header.jsx";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../blocks/form.css";
 import "../../blocks/popup.css";
+import PropTypes from "prop-types";
 
 export default function Register({ handleRegistration }) {
   const [data, setData] = useState({
@@ -66,3 +66,7 @@ export default function Register({ handleRegistration }) {
     </div>
   );
 }
+
+Register.propTypes = {
+  handleRegistration: PropTypes.func.isRequired,
+};

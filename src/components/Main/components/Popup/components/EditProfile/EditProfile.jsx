@@ -1,4 +1,3 @@
-import React from "react";
 import "../../../../../../blocks/form.css";
 import "../../../../../../blocks/popup.css";
 import { useState } from "react";

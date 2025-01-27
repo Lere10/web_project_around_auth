@@ -1,6 +1,6 @@
-import React from "react";
 import "../../../../blocks/grid.css";
 import closeIcon from "../../../../images/popup__closeicon.png";
+import PropTypes from "prop-types";
 
 export default function ImagePopup(props) {
   const { name, link, onClose } = props;
@@ -19,3 +19,9 @@ export default function ImagePopup(props) {
     </div>
   );
 }
+
+ImagePopup.propTypes = {
+  name: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

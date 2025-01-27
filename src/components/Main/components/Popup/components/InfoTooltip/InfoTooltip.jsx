@@ -1,7 +1,7 @@
-import React from "react";
 import stateOk from "../../../../../../images/stateOk.png";
 import stateNotOk from "../../../../../../images/denied.png";
 import "../../../../../../blocks/popup.css";
+import PropTypes from "prop-types";
 
 export default function InfoTooltip({ state }) {
   return (
@@ -24,3 +24,7 @@ export default function InfoTooltip({ state }) {
     </div>
   );
 }
+
+InfoTooltip.propTypes = {
+  state: PropTypes.bool.isRequired,
+};
