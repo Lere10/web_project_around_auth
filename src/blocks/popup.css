@@ -73,6 +73,32 @@
   max-width: 358px;
 }
 
+.popup__infotooltip {
+  text-align: center;
+}
+
+.popup__infotooltip-image {
+  padding: 60px 0px 32px 0px;
+  max-width: 120px;
+  width: 100%;
+}
+
+.popup__infotooltip-title {
+  padding-bottom: 60px;
+}
+
+.popup__title-auth {
+  margin: 0px auto;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  max-width: 358px;
+  color: #fff;
+  text-align: center;
+}
+
 .popup__form {
   max-width: 358px;
   margin: 0 auto;
@@ -94,7 +120,8 @@
 }
 
 @media screen and (max-width: 470px) {
-  .popup__title {
+  .popup__title,
+  .popup__title-auth {
     font-size: 18px;
     max-width: 84.39%;
     padding-bottom: 67px;

@@ -13,8 +13,6 @@ import { useContext } from "react";
 
 import Card from "./components/Card/Card.jsx";
 
-//ele estava aqui
-
 export default function Main({
   cards,
   handleCardLike,
@@ -25,7 +23,6 @@ export default function Main({
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
-  // ---------------------
   const NewCardPopup = { title: "Novo lugar", children: <NewCard /> };
   const EditProfilePopup = {
     title: "Editar perfil",
@@ -35,7 +32,6 @@ export default function Main({
     title: "Alterar foto de perfil",
     children: <EditAvatar />,
   };
-  //ultima coisa que fiz foi alterar esse trecho para dentro da function Main
 
   return (
     <main>

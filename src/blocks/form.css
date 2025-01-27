@@ -23,6 +23,22 @@
   max-width: 358px;
   width: 100%;
 }
+.form__input-bio-auth {
+  margin: 0px;
+  background-color: #000;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  max-width: 358px;
+  width: 100%;
+}
+.form__input-auth {
+  color: #fff;
+  background-color: #000;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 30px;
+  max-width: 358px;
+  width: 100%;
+}
 .form__input-error {
   border-bottom: 1px solid #ff0000;
 }
@@ -49,6 +65,17 @@
   margin: 48px auto 36px;
   align-self: center;
   padding: 18px 125px;
+}
+.form__button-auth {
+  margin-top: 216px;
+  background-color: #fff;
+  color: #000;
+  max-width: 358px;
+  width: 100%;
+  padding: 14px 0px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
 }
 .form__button:hover {
   cursor: pointer;

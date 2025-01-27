@@ -207,38 +207,12 @@ function App() {
             path="/"
             element={
               <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <div
-                  className="page__content"
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <p
-                    style={{
-                      margin: "0px",
-                      padding: "0px",
-                      color: "#fff",
-                      position: "absolute",
-                      zIndex: "1",
-                      top: "55px",
-                      right: "89px",
-                    }}
-                  >
-                    {token.getEmail()}
-                  </p>
+                <div className="page__content-auth">
+                  <p className="page__content-auth-email">{token.getEmail()}</p>
                   <NavLink
                     to="/signin"
                     onClick={handleLogout}
-                    style={{
-                      textDecoration: "none",
-                      color: "#A9A9A9",
-                      position: "absolute",
-                      zIndex: "1",
-                      top: "55px",
-                      right: "0px",
-                    }}
+                    className="page__navlink-sign page__navlink-signout"
                   >
                     Sair
                   </NavLink>
